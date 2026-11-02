@@ -1,0 +1,22 @@
+.search-container {
+  width: 60%;
+  margin: 40px auto;
+  display: flex;
+}
+
+.search-container input {
+  flex: 1;
+  height: 40px;
+  padding: 0 15px;
+  font-size: 16px;
+  border: 1px solid #999;
+  outline: none;
+}
+
+.search-container button {
+  width: 100px;
+  background: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

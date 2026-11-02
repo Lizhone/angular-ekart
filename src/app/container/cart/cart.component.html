@@ -1,0 +1,100 @@
+
+<div class="cart-page">
+
+  <div class="cart-header">
+    <h1>Shopping Cart</h1>
+    <p>{{ cartItems.length }} product type(s) in your cart</p>
+  </div>
+
+  <!-- Empty Cart -->
+  <div class="empty-cart" *ngIf="cartItems.length === 0">
+    <div class="empty-cart-icon">🛒</div>
+    <h2>Your cart is empty</h2>
+    <p>You haven't added any products yet.</p>
+
+    <a routerLink="/" class="continue-shopping">
+      Continue Shopping
+    </a>
+  </div>
+
+  <!-- Cart Products -->
+  <div class="cart-layout" *ngIf="cartItems.length > 0">
+
+    <div class="cart-items">
+
+      <div class="cart-item"
+           *ngFor="let item of cartItems; let i = index">
+
+        <img
+          [src]="item.product.imageURL"
+          [alt]="item.product.name"
+          class="cart-item-image">
+
+        <div class="cart-item-details">
+          <h3>{{ item.product.name }}</h3>
+
+          <p>Brand: {{ item.product.brand }}</p>
+          <p>Size: {{ item.size }}</p>
+          <p>Color: {{ item.color }}</p>
+
+          <p class="item-price">
+            ${{ item.product.discountPrice ?? item.product.price }}
+          </p>
+
+          <div class="quantity-controls">
+            <button type="button"
+                    (click)="decreaseQuantity(i)">−</button>
+
+            <span>{{ item.quantity }}</span>
+
+            <button type="button"
+                    (click)="increaseQuantity(i)"
+                    [disabled]="item.quantity >= item.product.items_left">
+              +
+            </button>
+          </div>
+
+          <button
+            type="button"
+            class="remove-item"
+            (click)="removeItem(i)">
+            Remove
+          </button>
+        </div>
+
+        <div class="item-subtotal">
+          ${{
+            (item.product.discountPrice ?? item.product.price)
+              * item.quantity | number:'1.2-2'
+          }}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <aside class="cart-summary">
+      <h2>Order Summary</h2>
+
+      <div class="summary-row">
+        <span>Total items</span>
+        <span>{{ getTotalQuantity() }}</span>
+      </div>
+
+      <div class="summary-row summary-total">
+        <span>Total</span>
+        <span>${{ cartTotal | number:'1.2-2' }}</span>
+      </div>
+
+      <button type="button" class="checkout-button" disabled>
+        Checkout — Coming Soon
+      </button>
+
+      <a routerLink="/" class="continue-shopping-link">
+        Continue Shopping
+      </a>
+    </aside>
+
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+
+<div class="header">
+
+  <a routerLink="/" class="logo">
+  <img src="assets/ekart-logo.png" alt="eKart Logo">
+</a>
+  <!-- Main Navigation -->
+  <nav>
+    <a routerLink="/">Home</a>
+    <a href="#">Products</a>
+    <a routerLink="/sale">Sale</a>
+    <a href="#">New Arrival</a>
+    <a href="#">Contact</a>
+    <a href="#">Services</a>
+
+    <!-- Shopping Cart -->
+    <a
+      routerLink="/cart"
+      class="header-cart"
+      aria-label="Open shopping cart">
+
+      <span class="header-cart-icon">🛒</span>
+      <span class="header-cart-label">Cart</span>
+
+      <span
+        class="header-cart-count"
+        *ngIf="cartCount > 0">
+        {{ cartCount }}
+      </span>
+    </a>
+
+    <!-- Hamburger Menu -->
+    <div class="header-links">
+
+      <button
+        class="menu-toggle"
+        type="button"
+        (click)="isMenuOpen = !isMenuOpen"
+        [attr.aria-expanded]="isMenuOpen"
+        aria-label="Toggle utility menu">
+        ☰
+      </button>
+
+      <!-- Utility Dropdown -->
+      <div class="utility-menu" *ngIf="isMenuOpen">
+        <span>Help</span>
+        <span>Exchange &amp; Returns</span>
+        <span>Order Tracker</span>
+        <span>SignUp / Login</span>
+      </div>
+
+    </div>
+
+  </nav>
+
+</div>

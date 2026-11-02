@@ -1,0 +1,411 @@
+/* ================================
+   FILTER
+================================ */
+
+.filter--container {
+  width: 90%;
+  margin: 30px auto 20px;
+  padding: 15px 20px;
+
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  font-size: 14px;
+}
+
+.filter--title {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.filter--container label {
+  cursor: pointer;
+}
+
+.filter--container input {
+  margin-right: 6px;
+}
+
+
+/* ================================
+   PRODUCT GRID
+================================ */
+
+.ekart--products--container {
+
+  width: 90%;
+  margin: 30px auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 30px;
+
+}
+
+
+/* ================================
+   PRODUCT CARD
+================================ */
+
+.ekart--product--item {
+  cursor: pointer;
+
+  position: relative;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e5e5;
+
+  padding: 15px;
+
+  min-height: 470px;
+
+  transition: 0.3s;
+
+  box-sizing: border-box;
+}
+
+
+.ekart--product--item:hover {
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.12);
+
+  transform: translateY(-3px);
+
+}
+
+
+/* ================================
+   WISHLIST + SALE
+================================ */
+
+.ekart--wishlist--sale--container {
+
+  position: absolute;
+
+  top: 15px;
+  left: 15px;
+  right: 15px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  z-index: 2;
+}
+
+
+.ekart--add--to--wishlist {
+
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  color: #555;
+}
+
+
+.ekart--add--to--wishlist:hover {
+
+  color: red;
+
+}
+
+
+.ekart--on-sale-tag {
+
+  background-color: #ff3b30;
+
+  color: white;
+
+  padding: 6px 10px;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+}
+
+
+/* ================================
+   PRODUCT IMAGE
+================================ */
+
+.ekart--product--image {
+
+  width: 100%;
+
+  height: 260px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  margin-bottom: 15px;
+
+}
+
+
+.ekart--product--image img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.3s;
+
+}
+
+
+.ekart--product--item:hover
+.ekart--product--image img {
+
+  transform: scale(1.05);
+
+}
+
+
+/* ================================
+   PRICE
+================================ */
+
+.ekart--add--to--price {
+
+  margin-bottom: 8px;
+
+}
+
+
+.old--price {
+
+  color: #888;
+
+  text-decoration: line-through;
+
+  font-size: 14px;
+
+  margin-right: 8px;
+
+}
+
+
+.new--price {
+
+  color: #222;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+}
+
+
+/* ================================
+   PRODUCT NAME
+================================ */
+
+.ekart--product--name {
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  color: #222;
+
+  margin-bottom: 8px;
+
+}
+
+
+/* ================================
+   CATEGORY
+================================ */
+
+.ekart--product--category {
+
+  color: #777;
+
+  font-size: 13px;
+
+  margin-bottom: 10px;
+
+  text-transform: uppercase;
+
+}
+
+
+/* ================================
+   COLORS
+================================ */
+
+.ekart--product--available--colors {
+
+  font-size: 13px;
+
+  color: #555;
+
+  margin-bottom: 12px;
+
+}
+
+
+/* ================================
+   STOCK
+================================ */
+
+.ekart--product--in--stock {
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+}
+
+
+.in-stock {
+
+  color: green;
+
+}
+
+
+.out-of-stock {
+
+  color: red;
+
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+  .ekart--products--container {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .ekart--products--container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .filter--container {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+  }
+
+}
+.view-details-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.view-details-btn:hover {
+  background: #444;
+}
+/* =========================================
+   SELECTED PRODUCT + DETAILS
+========================================= */
+
+.selected-product-layout {
+  width: 90%;
+  margin: 50px auto;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+
+  gap: 0;
+
+  align-items: stretch;
+}
+
+
+/* Selected product on the left */
+
+.selected-product-card {
+  padding: 25px;
+
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+
+  box-sizing: border-box;
+}
+
+.selected-product-card .ekart--product--image {
+  height: 500px;
+}
+
+
+/* Product details on the right */
+
+.selected-product-layout app-product-details {
+  display: block;
+}
+
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+  .selected-product-layout {
+    width: 92%;
+
+    grid-template-columns: 1fr;
+  }
+
+}
+

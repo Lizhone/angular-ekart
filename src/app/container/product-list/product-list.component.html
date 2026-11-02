@@ -1,0 +1,124 @@
+
+<!-- =========================================
+     PRODUCT FILTER
+========================================= -->
+
+<app-filter
+  [all]="totalProductCount"
+  [inStock]="totalProductInStock"
+  [outOfStock]="totalProductOutOfStock"
+  (selectedFilterRadioButtonChanged)="onFilterChanged($event)">
+</app-filter>
+
+
+<!-- =========================================
+     PRODUCTS CONTAINER
+========================================= -->
+
+<div class="ekart--products--container">
+
+  <div
+    class="ekart--product--item"
+    *ngFor="let prod of filteredProducts"
+    (click)="onProductSelected(prod); $event.stopPropagation()"
+    style="cursor: pointer;"
+  >
+
+    <!-- Wishlist and Sale Badge -->
+    <div class="ekart--wishlist--sale--container">
+
+      <div class="ekart--add--to--wishlist">
+        ♡
+      </div>
+
+      <div
+        class="ekart--on-sale-tag"
+        *ngIf="prod.discountPrice"
+      >
+        {{
+          (100 - (prod.discountPrice / prod.price * 100)).toFixed(0)
+        }}% OFF
+      </div>
+
+    </div>
+
+
+    <!-- Product Image -->
+    <div class="ekart--product--image">
+
+      <img
+        [src]="prod.imageURL"
+        [alt]="prod.name"
+      >
+
+    </div>
+
+
+    <!-- Product Price -->
+    <div class="ekart--add--to--price">
+
+      <span
+        *ngIf="prod.discountPrice"
+        class="old--price"
+      >
+        ${{ prod.price }}
+      </span>
+
+      <span class="new--price">
+        ${{ prod.discountPrice || prod.price }}
+      </span>
+
+    </div>
+
+
+    <!-- Product Name -->
+    <div class="ekart--product--name">
+      {{ prod.name }}
+    </div>
+
+
+    <!-- Product Category -->
+    <div class="ekart--product--category">
+      {{ prod.gender }} ·
+      {{ prod.category }} ·
+      {{ prod.brand }}
+    </div>
+
+
+    <!-- Available Colors -->
+    <div class="ekart--product--available--colors">
+      {{ prod.color.length }} Colors · Best Seller
+    </div>
+
+
+    <!-- Stock Status -->
+    <div
+      class="ekart--product--in--stock"
+      [class.in-stock]="prod.is_in_inventory"
+      [class.out-of-stock]="!prod.is_in_inventory"
+    >
+      {{
+        prod.is_in_inventory
+          ? 'Available in Stock'
+          : 'Not available in stock'
+      }}
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================
+     PRODUCT DETAILS SIDE PANEL
+========================================= -->
+
+<div *ngIf="selectedProduct">
+
+  <app-product-details
+    [product]="selectedProduct"
+    (close)="closeProductDetails()"
+    (addToCart)="handleAddToCart($event)">
+  </app-product-details>
+
+</div>

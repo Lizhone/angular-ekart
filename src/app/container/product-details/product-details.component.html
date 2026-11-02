@@ -1,0 +1,141 @@
+<!-- Dark background overlay -->
+<div
+  class="product-details-overlay"
+  *ngIf="product"
+  (click)="closeDetails()"
+></div>
+
+<!-- Right-side details panel -->
+<div
+  class="product-details-panel"
+  *ngIf="product"
+  (click)="$event.stopPropagation()"
+>
+  <!-- Close Button -->
+  <button
+    class="close-details"
+    type="button"
+    (click)="closeDetails()"
+    aria-label="Close product details"
+  >
+    ×
+  </button>
+
+  <!-- Product Image -->
+  <div class="product-details-image">
+    <img
+      [src]="product.imageURL"
+      [alt]="product.name"
+    >
+  </div>
+
+  <!-- Product Information -->
+  <div class="product-details-info">
+    <h1>{{ product.name }}</h1>
+
+    <p class="product-brand">
+      Brand: <strong>{{ product.brand }}</strong>
+    </p>
+
+    <p>
+      Category: <strong>{{ product.category }}</strong>
+    </p>
+
+    <p>
+      Gender: <strong>{{ product.gender }}</strong>
+    </p>
+
+    <!-- Price -->
+    <div class="product-price">
+      <span
+        class="old-price"
+        *ngIf="product.discountPrice"
+      >
+        ${{ product.price }}
+      </span>
+
+      <span class="current-price">
+        ${{ product.discountPrice || product.price }}
+      </span>
+    </div>
+
+    <!-- Description -->
+    <div class="product-description">
+      <h3>Description</h3>
+      <p>{{ product.description }}</p>
+    </div>
+
+    <!-- Colors -->
+    <div class="product-colors">
+      <h3>Available Colors</h3>
+
+      <button
+        *ngFor="let color of product.color"
+        type="button"
+        class="color-option"
+        [class.selected]="selectedColor === color"
+        [attr.aria-pressed]="selectedColor === color"
+        (click)="selectColor(color)"
+      >
+        {{ color }}
+      </button>
+    </div>
+
+    <!-- Sizes -->
+    <div class="product-sizes">
+      <h3>Available Sizes</h3>
+
+      <button
+        *ngFor="let size of product.size"
+        type="button"
+        class="size-option"
+        [class.selected]="selectedSize === size"
+        [attr.aria-pressed]="selectedSize === size"
+        (click)="selectSize(size)"
+      >
+        {{ size }}
+      </button>
+    </div>
+
+    <!-- Stock Status -->
+    <div
+      class="product-stock"
+      [class.in-stock]="product.is_in_inventory"
+      [class.out-of-stock]="!product.is_in_inventory"
+    >
+      {{
+        product.is_in_inventory
+          ? 'Available in Stock'
+          : 'Not available in stock'
+      }}
+    </div>
+
+    <!-- Items Left -->
+    <p *ngIf="product.is_in_inventory">
+      Only <strong>{{ product.items_left }}</strong> items left
+    </p>
+
+    <!-- Cart Feedback -->
+    <p
+      *ngIf="cartMessage"
+      role="status"
+      aria-live="polite"
+    >
+      {{ cartMessage }}
+    </p>
+
+    <!-- Add to Cart -->
+    <button
+      class="add-to-cart"
+      type="button"
+      [disabled]="!product.is_in_inventory"
+      (click)="addProductToCart()"
+    >
+      {{
+        product.is_in_inventory
+          ? 'Add to Cart'
+          : 'Out of Stock'
+      }}
+    </button>
+  </div>
+</div>

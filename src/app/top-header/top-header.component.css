@@ -1,0 +1,39 @@
+/* TOP SALE ANNOUNCEMENT BAR */
+.top-header {
+    width: 100%;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+
+    background-color: transparent;
+    color: #7d1111;
+
+    display: flex;
+    align-items: center;
+}
+
+/* CONTINUOUS SCROLLING TEXT */
+.top-header p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 1000;
+    white-space: nowrap;
+
+    position: absolute;
+    left: 100%;
+
+    animation: scroll-left 12s linear infinite;
+}
+
+/* RIGHT TO LEFT ANIMATION */
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+        left: 100%;
+    }
+
+    to {
+        transform: translateX(-100%);
+        left: 0;
+    }
+}
